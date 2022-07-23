@@ -1,9 +1,20 @@
 ﻿using System;
 using System.IO;
-
+/*
+ * Aliveni Thodupunuri
+ * v1.0
+ * This program is for trucking company
+ * where a car and a driver have been created
+ * and how the updates to kilometers, demerits
+ * are performed and viewing of vehicle, car & driver details 
+ * are perforemed.
+ * This program also has read/write to text file
+ * 
+ */
 namespace Assessment2AT
 {
     // base class (parent)
+    // this class is used by both Car & truck
     public class Vehicle
     {
         //Declare attributes of the Vehicle class
@@ -30,7 +41,7 @@ namespace Assessment2AT
             }
         }
 
-
+        //displaying of vehicle general details
         public void displayGeneral()
         {
             //display general details of the object calling this method
@@ -42,6 +53,7 @@ namespace Assessment2AT
     }
 
     // Derived class (child) from Vehicle
+    //inheriting Vehicle class
     public class Car : Vehicle
     {
         //Car class attributes
@@ -74,11 +86,13 @@ namespace Assessment2AT
             this.driver = dr;
         }
 
+        //method accepts colour from user and updates to object of car class
         public void changeColour(String clr)
         {
             colour = clr; //changing colour attribute of class variable
         }
 
+        //displays car specific details
         public void displaySpecific()
         {
             Console.WriteLine("\nCar Details");
@@ -86,12 +100,14 @@ namespace Assessment2AT
 
         }
 
+        //displays vehicle class general details and car specific details
         public void displayGeneralSpecific()
         {
             displaySpecific(); //calling display specific method from this class
             displayGeneral();  //calling display general method from vehicle class
         }
 
+        //displays all vehicle details including specific and associated driver
         public void displayAll()
         {
             displayGeneralSpecific();//calling display general specific method from this class
@@ -100,7 +116,10 @@ namespace Assessment2AT
 
     }
 
-    public class Truck : Vehicle  // derived class (child)
+    // derived class (child)
+    //inheriting Vehicle class
+    public class Truck : Vehicle  
+        //inheriting Vehicle class
     {
         //Declare attributes of the truck class
         public int maximumLoad;
@@ -124,20 +143,20 @@ namespace Assessment2AT
             noOfAxles = axl;
             noOfWheels = whls;
         }
-
+        //displays car specific details
         public void displaySpecific()
         {
             Console.WriteLine("\nCar Details");
             Console.WriteLine("Maximum Load: " + this.maximumLoad + " Number of Axles: " + this.noOfAxles + " Number of Wheels: " + this.noOfWheels);
 
         }
-
+        //displays vehicle class general details and truck specific details
         public void displayGeneralSpecific()
         {
             displaySpecific(); //calling display specific method from this class
             displayGeneral();  //calling display general method from vehicle class
         }
-
+        //displays all vehicle details including specific and associated driver
         public void displayAll()
         {
             displayGeneralSpecific();//calling display general specific method from this class
@@ -148,7 +167,7 @@ namespace Assessment2AT
 
     public class Driver
     {
-
+        //instance variables
          public string licenseNo;
          public string firstName;
          public string lastName;
@@ -183,7 +202,7 @@ namespace Assessment2AT
              stateLicense = sts;
              maxDemerits = dms;
     }
-
+        //displayes driver details including address & state licenses
         public void displayDriver()
         {
             Console.WriteLine("\nDriver details - License No: " + licenseNo + " Driver First Name: " + firstName + " Driver Last Name: " + lastName + " Mobile Phone No: " + mobilePhoneNo + " Max Demerits: " + maxDemerits);
@@ -200,7 +219,7 @@ namespace Assessment2AT
             }
 
         }
-
+        //method accepts new demerits (+/-), checks conditions of new demerit value and updates
         public void addDeleteDemerits(int DM)
         {
             int chkdm = DM;
@@ -215,8 +234,6 @@ namespace Assessment2AT
                 maxDemerits = maxDemerits + chkdm;
                 Console.WriteLine("\nYour new demerits are: " + maxDemerits +  ", License suspension imminent");
             }
-
-
             else if ( maxDemerits + chkdm > 12 )
             //else 
             {
@@ -231,7 +248,7 @@ namespace Assessment2AT
             }
 
         }
-
+        //method writes driver details to text file
         public void writeDriverToFile()
         {
             //Create a text string
@@ -241,7 +258,7 @@ namespace Assessment2AT
             File.AppendAllText("C:\\csharpfiles\\test.txt", " Address:  " + " " + address[0] + " " + address[1] + " " + address[2] + " " + address[3]);
             File.AppendAllText("C:\\csharpfiles\\test.txt", " State licnese: " + stateLicense[0] + stateLicense[1] );
         }
-
+        //method reads from text file
         public void readDriverFromFile()
         {
             //Reading contents from file
