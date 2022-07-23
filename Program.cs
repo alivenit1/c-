@@ -148,39 +148,41 @@ namespace Assessment2AT
 
     public class Driver
     {
-        public string licenseNo;
-        public string firstName;
-        public string lastName;
-        public int mobilePhoneNo;
-        public string[] address;
-        public string[] stateLicense;
-        public int maxDemerits;
 
-        //Default constructor of Driver class
-        public Driver()
-        {
-            licenseNo = "11999888";
-            firstName = "Aliveni";
-            lastName = "Thodupunuri";
-            mobilePhoneNo = 999888333;
-            maxDemerits = 0;
-            address = new string[4] { "Street: 123 Main Road", "City: Melbourne", "State: VIC", "Post Code: 3030" };
-            stateLicense = new string[2] { "VIC :", "NSW" };
-        }
+         public string licenseNo;
+         public string firstName;
+         public string lastName;
+         public int mobilePhoneNo;
+         public string[] address;
+         public string[] stateLicense;
+         public int maxDemerits;
+
+         //Default constructor of Driver class
+         public Driver()
+         {
+             licenseNo = "11999888";
+             firstName = "Aliveni";
+             lastName = "Thodupunuri";
+             mobilePhoneNo = 999888333;
+             maxDemerits = 0;
+             address = new string[4] { "Street: 123 Main Road", "City: Melbourne", "State: VIC", "Post Code: 3030" };
+             stateLicense = new string[2] { "VIC :", "NSW" };
+         }
 
 
 
-//Constructor of Driver class with arguments
-public Driver(string lno, string fn, string ln, int mno, string[] addr, string[] sts, int dms)
-        {
-            licenseNo = lno;
-            firstName = fn;
-            lastName = ln;
-            mobilePhoneNo = mno;
-            address = addr;
-            stateLicense = sts;
-            maxDemerits = dms;
-        }
+        //Constructor of Driver class with arguments
+        public Driver(string lno, string fn, string ln, int mno, string[] addr, string[] sts, int dms)
+         {
+             licenseNo = lno;
+             firstName = fn;
+
+             lastName = ln;
+             mobilePhoneNo = mno;
+             address = addr;
+             stateLicense = sts;
+             maxDemerits = dms;
+    }
 
         public void displayDriver()
         {
@@ -214,7 +216,9 @@ public Driver(string lno, string fn, string ln, int mno, string[] addr, string[]
                 Console.WriteLine("\nYour new demerits are: " + maxDemerits +  ", License suspension imminent");
             }
 
+
             else if ( maxDemerits + chkdm > 12 )
+            //else 
             {
                 maxDemerits = 12;
                 Console.WriteLine( "\nDemerits cannot go over 12, demerits set to 12 ");
@@ -269,6 +273,8 @@ public Driver(string lno, string fn, string ln, int mno, string[] addr, string[]
             myCar1.displayAll();
 
             Console.WriteLine("\n*******Sequence 3 *********************");
+            Console.WriteLine("\n******* Add 2 Demerits *********************");
+
             driver1.addDeleteDemerits(2);
             myCar1.updateKM(100);
             myCar1.changeColour("Red");
