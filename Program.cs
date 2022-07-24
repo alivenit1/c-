@@ -29,11 +29,10 @@ namespace Assessment2AT
         {
             //update kilometers of the object calling this method
             
-            int chkKM = kms;
-            if (chkKM + kmDriven < 0) //checking if KM update will take total km to negative
+            
+            if (kms + kmDriven < 0) //checking if KM update will take total km to negative
             {
-                kmDriven = 0; //changing to 0 as cannot be negative
-                Console.WriteLine("Kilometers driven cannot go into negative, setting KM to 0");
+                Console.WriteLine("Kilometers driven cannot go into negative, no changes made");
             }
             else
             {
@@ -42,7 +41,7 @@ namespace Assessment2AT
         }
 
         //displaying of vehicle general details
-        public void displayGeneral()
+        public virtual void displayGeneral()
         {
             //display general details of the object calling this method
             Console.WriteLine("\nVehicle Details");
@@ -57,33 +56,41 @@ namespace Assessment2AT
     public class Car : Vehicle
     {
         //Car class attributes
-        public string bodyType;
-        public string colour;
-        public string upholstry;
-        public int noOfDoors;
+        private string bodyType;
+        private string colour;
+        private string upholstery;
+        private int noOfDoors;
 
         //Constructor of Car class with default assignment
         public Car()
         {
             bodyType = "Sedan";
             colour = "Blue";
-            upholstry = "Cloth trip";
+            upholstery = "Cloth trim";
             noOfDoors = 4;
         }
 
 
         //Constructor of Car class with arguments to assign values
-        public Car(string reg, string mk, string mdl, int km, string bt, string clr, string upl, int drs, Driver dr)
+        public Car(string registrationNumber, string make, string model, int kmDriven, string bodyType, string colour, string upholstery, int noOfDoors, Driver driver)
         {
-            registrationNumber = reg;
-            make = mk;
-            model = mdl;
-            kmDriven = km;
-            bodyType = bt;
-            colour = clr;
-            upholstry = upl;
-            noOfDoors = drs;
-            this.driver = dr;
+            this.registrationNumber = registrationNumber;
+            this.make = make;
+            this.model = model;
+            this.kmDriven = kmDriven;
+            this.bodyType = bodyType;
+            this.colour = colour;
+            this.upholstery = upholstery;
+            this.noOfDoors = noOfDoors;
+            this.driver = driver;
+        }
+
+        //overriding the vehcile class displayGeneral method
+        public override void displayGeneral()
+        {
+            //display general details of the object calling this method
+            Console.WriteLine("\nCar Vehicle Details");
+            Console.WriteLine("Registration is: " + this.registrationNumber + " Make is: " + this.make + " Model is: " + this.model + " Kilometers Driven: " + this.kmDriven);
         }
 
         //method accepts colour from user and updates to object of car class
@@ -95,8 +102,8 @@ namespace Assessment2AT
         //displays car specific details
         public void displaySpecific()
         {
-            Console.WriteLine("\nCar Details");
-            Console.WriteLine("Body Typ: " + this.bodyType + " Colour: " + this.colour + " Upholstry: " + this.upholstry + " No of Doors: " + this.noOfDoors);
+            Console.WriteLine("\nCar Specific Details");
+            Console.WriteLine("Body Typ: " + this.bodyType + " Colour: " + this.colour + " Upholstery: " + this.upholstery + " No of Doors: " + this.noOfDoors);
 
         }
 
@@ -119,12 +126,11 @@ namespace Assessment2AT
     // derived class (child)
     //inheriting Vehicle class
     public class Truck : Vehicle  
-        //inheriting Vehicle class
     {
         //Declare attributes of the truck class
-        public int maximumLoad;
-        public int noOfAxles;
-        public int noOfWheels;
+        private int maximumLoad;
+        private int noOfAxles;
+        private int noOfWheels;
 
         //default constructor of Truck class
         public Truck()
@@ -133,20 +139,30 @@ namespace Assessment2AT
         }
 
         //Constructor of Truck class with arguments
-        public Truck(string reg, string mak, string mod, int km, int mxl, int axl, int whls)
+        public Truck(string registrationNumber, string make, string model, int kmDriven, int maximumLoad, int noOfAxles, int noOfWheels, Driver driver)
         {
-            registrationNumber = reg;
-            make = mak;
-            model = mod;
-            kmDriven = km;
-            maximumLoad = mxl;
-            noOfAxles = axl;
-            noOfWheels = whls;
+            this.registrationNumber = registrationNumber;
+            this.make = make;
+            this.model = model;
+            this.kmDriven = kmDriven;
+            this.maximumLoad = maximumLoad;
+            this.noOfAxles = noOfAxles;
+            this.noOfWheels = noOfWheels;
+            this.driver = driver;
         }
-        //displays car specific details
+
+        //overriding the vehcile class displayGeneral method
+        public override void displayGeneral()
+        {
+            //display general details of the object calling this method
+            Console.WriteLine("\nTruck Vehicle Details");
+            Console.WriteLine("Registration is: " + this.registrationNumber + " Make is: " + this.make + " Model is: " + this.model + " Kilometers Driven: " + this.kmDriven);
+        }
+
+        //displays Truck specific details
         public void displaySpecific()
         {
-            Console.WriteLine("\nCar Details");
+            Console.WriteLine("\nTruck Details");
             Console.WriteLine("Maximum Load: " + this.maximumLoad + " Number of Axles: " + this.noOfAxles + " Number of Wheels: " + this.noOfWheels);
 
         }
@@ -168,13 +184,13 @@ namespace Assessment2AT
     public class Driver
     {
         //instance variables
-         public string licenseNo;
-         public string firstName;
-         public string lastName;
-         public int mobilePhoneNo;
-         public string[] address;
-         public string[] stateLicense;
-         public int maxDemerits;
+         private string licenseNo;
+         private string firstName;
+         private string lastName;
+         private int mobilePhoneNo;
+         private string[] address;
+         private string[] stateLicense;
+         private int maxDemerits;
 
          //Default constructor of Driver class
          public Driver()
@@ -191,17 +207,17 @@ namespace Assessment2AT
 
 
         //Constructor of Driver class with arguments
-        public Driver(string lno, string fn, string ln, int mno, string[] addr, string[] sts, int dms)
+        public Driver(string licenseNo, string firstName, string lastName, int mobilePhoneNo, string[] address, string[] stateLicense, int maxDemerits)
          {
-             licenseNo = lno;
-             firstName = fn;
-
-             lastName = ln;
-             mobilePhoneNo = mno;
-             address = addr;
-             stateLicense = sts;
-             maxDemerits = dms;
-    }
+            this.licenseNo = licenseNo;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.mobilePhoneNo = mobilePhoneNo;
+            this.address = address;
+            this.stateLicense = stateLicense;
+            this.maxDemerits = maxDemerits;
+            
+         }
         //displayes driver details including address & state licenses
         public void displayDriver()
         {
@@ -222,19 +238,19 @@ namespace Assessment2AT
         //method accepts new demerits (+/-), checks conditions of new demerit value and updates
         public void addDeleteDemerits(int DM)
         {
-            int chkdm = DM;
-            if (chkdm + maxDemerits < 0)
+
+            if (DM + maxDemerits < 0)
             {
                 maxDemerits = 0;
                 Console.WriteLine("\nDemerits cannot go negative, Your new demerits are 0");
             }
-            else if( maxDemerits + chkdm > 9 & maxDemerits + chkdm <= 12)
+            else if( maxDemerits + DM > 9 & maxDemerits + DM <= 12)
             {
 
-                maxDemerits = maxDemerits + chkdm;
+                maxDemerits = maxDemerits + DM;
                 Console.WriteLine("\nYour new demerits are: " + maxDemerits +  ", License suspension imminent");
             }
-            else if ( maxDemerits + chkdm > 12 )
+            else if ( maxDemerits + DM > 12 )
             //else 
             {
                 maxDemerits = 12;
@@ -251,12 +267,15 @@ namespace Assessment2AT
         //method writes driver details to text file
         public void writeDriverToFile()
         {
-            //Create a text string
-            string writeText = "Driver Details: ";  
-            File.WriteAllText("C:\\csharpfiles\\test.txt", writeText);
-            File.AppendAllText("C:\\csharpfiles\\test.txt", "License Number: " + licenseNo + " " + " First name: " + firstName + " " + " Last name: " + lastName + " "  + " Mobile phone No: " + mobilePhoneNo + " " + " Max Demerirts: " +  maxDemerits + " ");
-            File.AppendAllText("C:\\csharpfiles\\test.txt", " Address:  " + " " + address[0] + " " + address[1] + " " + address[2] + " " + address[3]);
-            File.AppendAllText("C:\\csharpfiles\\test.txt", " State licnese: " + stateLicense[0] + stateLicense[1] );
+
+            File.AppendAllText("C:\\csharpfiles\\test.txt", "Driver Details:\nLicense Number: " + licenseNo + " " + " First name: " + firstName + " " + " Last name: " + lastName + " "  + " Mobile phone No: " + mobilePhoneNo + " " + " Max Demerirts: " +  maxDemerits + "\n");
+            File.AppendAllText("C:\\csharpfiles\\test.txt", "Address: \n");
+            File.AppendAllLines("C:\\csharpfiles\\test.txt", address);
+            File.AppendAllText("C:\\csharpfiles\\test.txt", "Licenced to drive in : \n");
+            File.AppendAllLines("C:\\csharpfiles\\test.txt", stateLicense);
+
+            //File.AppendAllText("C:\\csharpfiles\\test.txt", " Address:  " + " " + address[0] + " " + address[1] + " " + address[2] + " " + address[3]);
+            //File.AppendAllText("C:\\csharpfiles\\test.txt", " State licnese: " + stateLicense[0] + stateLicense[1] );
         }
         //method reads from text file
         public void readDriverFromFile()
@@ -273,6 +292,11 @@ namespace Assessment2AT
     {
         static void Main(string[] args)
         {
+            //Demonstrating another constructor of car class
+            Car myCar2 = new Car();
+            myCar2.displaySpecific();
+
+            
             //Create driver1 using constructor with parameters
             string [] address = { "Street: 16 Tyalla St", "City: Wyndham Vale", "State: VIC", "Post Code: 3024" };
             string [] stateLicense =  { " VIC : ", "NSW " };
@@ -319,6 +343,16 @@ namespace Assessment2AT
             Console.WriteLine("\n********Reading Driver Details from file after writing");
             driver1.writeDriverToFile();
             driver1.readDriverFromFile();
+
+            Console.WriteLine("\n********Creating Truck class object and another driver to assign it");
+            string[] address2 = { "Street: 1 Main St", "City: Wyndham Vale", "State: VIC", "Post Code: 3000" };
+            string[] stateLicense2 = { " VIC : ", "NSW :", "WA " };
+            Driver driver2 = new Driver("DL124333", "Kiran", "Kumar", 1234568877, address2, stateLicense2, 0);
+            Truck myTruck1 = new Truck("TRK1111", "Toyota", "MaxTruck", 1500, 2500, 2,8, driver2);
+            myTruck1.displayGeneral();
+            myTruck1.displaySpecific();
+            myTruck1.displayGeneralSpecific();
+
         }
     }
 }
