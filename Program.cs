@@ -44,7 +44,7 @@ namespace Assessment2AT
         public virtual void displayGeneral()
         {
             //display general details of the object calling this method
-            Console.WriteLine("\nVehicle Details");
+            //Console.WriteLine("\nVehicle Details");
             Console.WriteLine("Registration is: " + this.registrationNumber + " Make is: " + this.make + " Model is: " + this.model + " Kilometers Driven: " + this.kmDriven);
         }
 
@@ -88,9 +88,9 @@ namespace Assessment2AT
         //overriding the vehcile class displayGeneral method
         public override void displayGeneral()
         {
-            //display general details of the object calling this method
-            Console.WriteLine("\nCar Vehicle Details");
-            Console.WriteLine("Registration is: " + this.registrationNumber + " Make is: " + this.make + " Model is: " + this.model + " Kilometers Driven: " + this.kmDriven);
+            Console.WriteLine("\nCar/Vehicle Details");
+            base.displayGeneral();
+
         }
 
         //method accepts colour from user and updates to object of car class
@@ -155,8 +155,8 @@ namespace Assessment2AT
         public override void displayGeneral()
         {
             //display general details of the object calling this method
-            Console.WriteLine("\nTruck Vehicle Details");
-            Console.WriteLine("Registration is: " + this.registrationNumber + " Make is: " + this.make + " Model is: " + this.model + " Kilometers Driven: " + this.kmDriven);
+            Console.WriteLine("\nTruck/Vehicle Details");
+            base.displayGeneral();
         }
 
         //displays Truck specific details
